@@ -1,0 +1,228 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    COMMA
+    INT
+    STRING
+
+Grammar
+
+Rule 0     S' -> statement
+Rule 1     statement -> method
+Rule 2     statement -> assignment
+Rule 3     statement -> empty
+Rule 4     assignment -> stu_assignment
+Rule 5     assignment -> method_assignment
+Rule 6     method -> method_moveup
+Rule 7     method -> method_inq
+Rule 8     method_moveup -> ID DOT METHOD_MoveUp LP RP
+Rule 9     method_inq -> ID DOT METHOD_INQ LP RP
+Rule 10    stu_assignment -> ID EQUALS ID
+Rule 11    method_assignment -> ID EQUALS method_inq
+Rule 12    empty -> <empty>
+
+Terminals, with rules where they appear
+
+COMMA                : 
+DOT                  : 8 9
+EQUALS               : 10 11
+ID                   : 8 9 10 10 11
+INT                  : 
+LP                   : 8 9
+METHOD_INQ           : 9
+METHOD_MoveUp        : 8
+RP                   : 8 9
+STRING               : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+assignment           : 2
+empty                : 3
+method               : 1
+method_assignment    : 5
+method_inq           : 7 11
+method_moveup        : 6
+statement            : 0
+stu_assignment       : 4
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . statement
+    (1) statement -> . method
+    (2) statement -> . assignment
+    (3) statement -> . empty
+    (6) method -> . method_moveup
+    (7) method -> . method_inq
+    (4) assignment -> . stu_assignment
+    (5) assignment -> . method_assignment
+    (12) empty -> .
+    (8) method_moveup -> . ID DOT METHOD_MoveUp LP RP
+    (9) method_inq -> . ID DOT METHOD_INQ LP RP
+    (10) stu_assignment -> . ID EQUALS ID
+    (11) method_assignment -> . ID EQUALS method_inq
+
+    $end            reduce using rule 12 (empty -> .)
+    ID              shift and go to state 9
+
+    statement                      shift and go to state 1
+    method                         shift and go to state 2
+    assignment                     shift and go to state 3
+    empty                          shift and go to state 4
+    method_moveup                  shift and go to state 5
+    method_inq                     shift and go to state 6
+    stu_assignment                 shift and go to state 7
+    method_assignment              shift and go to state 8
+
+state 1
+
+    (0) S' -> statement .
+
+
+
+state 2
+
+    (1) statement -> method .
+
+    $end            reduce using rule 1 (statement -> method .)
+
+
+state 3
+
+    (2) statement -> assignment .
+
+    $end            reduce using rule 2 (statement -> assignment .)
+
+
+state 4
+
+    (3) statement -> empty .
+
+    $end            reduce using rule 3 (statement -> empty .)
+
+
+state 5
+
+    (6) method -> method_moveup .
+
+    $end            reduce using rule 6 (method -> method_moveup .)
+
+
+state 6
+
+    (7) method -> method_inq .
+
+    $end            reduce using rule 7 (method -> method_inq .)
+
+
+state 7
+
+    (4) assignment -> stu_assignment .
+
+    $end            reduce using rule 4 (assignment -> stu_assignment .)
+
+
+state 8
+
+    (5) assignment -> method_assignment .
+
+    $end            reduce using rule 5 (assignment -> method_assignment .)
+
+
+state 9
+
+    (8) method_moveup -> ID . DOT METHOD_MoveUp LP RP
+    (9) method_inq -> ID . DOT METHOD_INQ LP RP
+    (10) stu_assignment -> ID . EQUALS ID
+    (11) method_assignment -> ID . EQUALS method_inq
+
+    DOT             shift and go to state 10
+    EQUALS          shift and go to state 11
+
+
+state 10
+
+    (8) method_moveup -> ID DOT . METHOD_MoveUp LP RP
+    (9) method_inq -> ID DOT . METHOD_INQ LP RP
+
+    METHOD_MoveUp   shift and go to state 12
+    METHOD_INQ      shift and go to state 13
+
+
+state 11
+
+    (10) stu_assignment -> ID EQUALS . ID
+    (11) method_assignment -> ID EQUALS . method_inq
+    (9) method_inq -> . ID DOT METHOD_INQ LP RP
+
+    ID              shift and go to state 14
+
+    method_inq                     shift and go to state 15
+
+state 12
+
+    (8) method_moveup -> ID DOT METHOD_MoveUp . LP RP
+
+    LP              shift and go to state 16
+
+
+state 13
+
+    (9) method_inq -> ID DOT METHOD_INQ . LP RP
+
+    LP              shift and go to state 17
+
+
+state 14
+
+    (10) stu_assignment -> ID EQUALS ID .
+    (9) method_inq -> ID . DOT METHOD_INQ LP RP
+
+    $end            reduce using rule 10 (stu_assignment -> ID EQUALS ID .)
+    DOT             shift and go to state 18
+
+
+state 15
+
+    (11) method_assignment -> ID EQUALS method_inq .
+
+    $end            reduce using rule 11 (method_assignment -> ID EQUALS method_inq .)
+
+
+state 16
+
+    (8) method_moveup -> ID DOT METHOD_MoveUp LP . RP
+
+    RP              shift and go to state 19
+
+
+state 17
+
+    (9) method_inq -> ID DOT METHOD_INQ LP . RP
+
+    RP              shift and go to state 20
+
+
+state 18
+
+    (9) method_inq -> ID DOT . METHOD_INQ LP RP
+
+    METHOD_INQ      shift and go to state 13
+
+
+state 19
+
+    (8) method_moveup -> ID DOT METHOD_MoveUp LP RP .
+
+    $end            reduce using rule 8 (method_moveup -> ID DOT METHOD_MoveUp LP RP .)
+
+
+state 20
+
+    (9) method_inq -> ID DOT METHOD_INQ LP RP .
+
+    $end            reduce using rule 9 (method_inq -> ID DOT METHOD_INQ LP RP .)
+
