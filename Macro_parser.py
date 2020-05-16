@@ -41,6 +41,18 @@ def p_method_print(p):
     if str(p[1]) == 'Register':
         for student in Register:
             print(student.name)
+    if str(p[1]) == 'full':
+        for student in fullQualified:
+            print(student.name)
+    if str(p[1]) == 'half':
+        for student in halfQualified:
+            print(student.name)
+    if str(p[1]) == 'quarter':
+        for student in quarterQualified:
+            print(student.name)
+    if str(p[1]) == 'none':
+        for student in notQualified:
+            print(student.name)
 
 
 def p_method_moveup(p):
@@ -60,18 +72,14 @@ def p_method_moveup(p):
                 return
 
 
-
 def p_stu_assignment(p):
     '''stu_assignment : STUDENT EQUALS ID COMMA ID COMMA ID COMMA ID COMMA ID'''
     p[0] = (p[2], p[1], p[3])
-
-
     for student in Register:
         if student.name == str(p[3]):
             print('Invalid name')
             return
     Register.append(Student(str(p[3]), str(p[5]), str(p[7]), str(p[9]), str(p[11])))
-
 
 
 def p_method_assignment(p):
@@ -87,8 +95,11 @@ def p_method_assignment(p):
             if student.name == str(p[1]):
                 student.expel()
                 return
-
-
+    if str(p[3]) == "gpa":
+        for student in Register:
+            if student.name == str(p[1]):
+                student.printGPA()
+                return
 
 
 def p_empty(p):

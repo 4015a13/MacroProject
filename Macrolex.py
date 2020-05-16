@@ -11,7 +11,7 @@ import sys
 
 reserved = {
     'METHOD_MoveUp': ['evaluate', 'force'],
-    'METHOD_INQ': ['status', 'expel'],
+    'METHOD_INQ': ['status', 'expel', 'gpa'],
     'STUDENT': ['student'],
     'PRINT': ['print'],
 }
