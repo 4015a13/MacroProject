@@ -1,5 +1,6 @@
 import ply.yacc as yacc
 import Macrolex as macrolex
+from MacroAlgorithms import *
 
 
 tokens = macrolex.tokens
@@ -28,63 +29,66 @@ def p_assignment(p):
 
 def p_method(p):
     '''method : method_moveup
-                | method_inq'''
+                | method_print
+                '''
 
     p[0] = p[1]
     # print('Method: {0}'.format(p[0]))
 
+def p_method_print(p):
+    '''method_print : ID DOT PRINT'''
+    p[0] = (p[3], str(p[1]))
+    if str(p[1]) == 'Register':
+        for student in Register:
+            print(student.name)
+
 
 def p_method_moveup(p):
-    '''method_moveup : ID DOT METHOD_MoveUp LP RP '''
-    p[0] = (p[3], p[1])
-    global student
+    '''method_moveup : ID DOT METHOD_MoveUp '''
+    p[0] = (p[3], str(p[1]))
 
-    if student.get(p[1]) is None:
-        print("ID Error")
-        return p
+    if str(p[3]) == "evaluate":
+        for student in Register:
+            if student.name == str(p[1]):
+                student.evaluate()
+                return
 
-    if p[3] == 'register':
-        student.register()
+    if str(p[3]) == "force":
+        for student in Register:
+            if student.name == str(p[1]):
+                student.force()
+                return
 
-    elif p[3] == "evaluate":
-        student.evaluate()
-
-    elif p[3] == "force":
-        student.force()
-
-
-def p_method_inq(p):
-    '''method_inq : ID DOT METHOD_INQ LP RP '''
-
-    global student
-
-    if student.get(p[1]) is None:
-        print("ID Error")
-        return p
-
-    if p[3] == 'status':
-        student.status()
-
-    elif p[3] == 'expel':
-        student.expel()
 
 
 def p_stu_assignment(p):
-    '''stu_assignment : ID EQUALS ID'''
+    '''stu_assignment : STUDENT EQUALS ID COMMA ID COMMA ID COMMA ID COMMA ID'''
     p[0] = (p[2], p[1], p[3])
-    global student
 
-    if student.get(p[3]) is not None:
-        student[p[1]] = None
-        student.update({p[1]: student[p[3]]})
-    else:
-        print('ID Error')
+
+    for student in Register:
+        if student.name == str(p[3]):
+            print('Invalid name')
+            return
+    Register.append(Student(str(p[3]), str(p[5]), str(p[7]), str(p[9]), str(p[11])))
+
 
 
 def p_method_assignment(p):
-    '''method_assignment : ID EQUALS method_inq'''
-    p[0] = (p[2], p[1], p[3])
-    global student
+    '''method_assignment : ID DOT METHOD_INQ'''
+    p[0] = (p[2], str(p[1]), p[3])
+    if str(p[3]) == "status":
+        for student in Register:
+            if student.name == str(p[1]):
+                student.status()
+                return
+    if str(p[3]) == "expel":
+        for student in Register:
+            if student.name == str(p[1]):
+                student.expel()
+                return
+
+
 
 
 def p_empty(p):

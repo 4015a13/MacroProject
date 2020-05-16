@@ -5,14 +5,10 @@ class Student:
         self.hisGrade = hisGrade
         self.engGrade = engGrade
         self.spaGrade = spaGrade
-        self.Register = list()
-        self.fullQualified = list()
-        self.halfQualified = list()
-        self.quarterQualified = list()
-        self.notQualified = list()
+
 
     def register(self):
-        self.Register.append(self)
+        Register.append(self)
         print("Operation Successful (REGISTER)")
 
     def gengrade(self, grade):
@@ -46,31 +42,31 @@ class Student:
                   self.name, " is  not qualified for the financial aid")
 
     def evaluate(self):
-        if self in self.Register:
+        if self in Register:
             if self.gpa() > 3.5:
-                self.fullQualified.append(self)
-                self.Register.remove(self)
+                fullQualified.append(self)
+
                 print("Student should receive the founds shortly")
             if 3.5 > self.gpa() >= 3.0:
-                self.halfQualified.append(self)
-                self.Register.remove(self)
+                halfQualified.append(self)
+
                 print("Student should receive the founds shortly")
             if 3.0 > self.gpa() >= 2.8:
-                self.quarterQualified.append(self)
-                self.Register.remove(self)
+                quarterQualified.append(self)
+
                 print("Student should receive the founds shortly")
             else:
-                self.notQualified.append(self)
-                self.Register.remove(self)
+                notQualified.append(self)
+
                 print("Student will not receive the founds")
         else:
             print("Not yet registered")
 
     def force(self):
-        if self in self.notQualified:
+        if self in notQualified:
             if self.gpa() > 2.5:
-                self.quarterQualified.append(self)
-                self.notQualified.remove(self)
+                quarterQualified.append(self)
+                notQualified.remove(self)
                 print("Operation Successful (FORCE)")
                 print("Student should receive the founds shortly (FORCED)")
             else:
@@ -80,31 +76,45 @@ class Student:
             print("ERROR")
 
     def expel(self):
-        if self in self.Register:
-            self.Register.remove(self)
+        if self in Register:
+            Register.remove(self)
             print("Student expelled")
-        elif self in self.fullQualified:
-            self.fullQualified.remove(self)
+        elif self in fullQualified:
+            fullQualified.remove(self)
             print("Student expelled")
-        elif self in self.halfQualified:
-            self.halfQualified.remove(self)
+        elif self in halfQualified:
+            halfQualified.remove(self)
             print("Student expelled")
-        elif self in self.quarterQualified:
-            self.quarterQualified.remove(self)
+        elif self in quarterQualified:
+            quarterQualified.remove(self)
             print("Student expelled")
-        elif self in self.notQualified:
-            self.notQualified.remove(self)
+        elif self in notQualified:
+            notQualified.remove(self)
             print("Student expelled")
         else:
             print("ERROR")
 
 
-Ralph = Student("Ralph", "F", "F", "A", "B")
+Register = list()
+fullQualified = list()
+halfQualified = list()
+quarterQualified = list()
+notQualified = list()
 
-Ralph.register()
-Ralph.evaluate()
-Ralph.force()
-Ralph.expel()
+
+# Ralph = Student("Ralph", "F", "F", "A", "B")
+# Ralph.register()
+# Ralph.evaluate()
+# Ralph.force()
+# Ralph.expel()
+#
+# Alberto = Student("Alberto", "A", "F", "A", "B")
+# Studentlist = []
+# Studentlist.append(Ralph)
+# Studentlist.append(Alberto)
+# for s in Studentlist:
+#     print(s.gpa)
+
 
 
 

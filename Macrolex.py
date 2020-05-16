@@ -10,8 +10,10 @@ import sys
 # reserved Words
 
 reserved = {
-    'METHOD_MoveUp': ['register', 'evaluate', 'force'],
+    'METHOD_MoveUp': ['evaluate', 'force'],
     'METHOD_INQ': ['status', 'expel'],
+    'STUDENT': ['student'],
+    'PRINT': ['print'],
 }
 
 # tokens
@@ -33,6 +35,8 @@ t_RP = r'\)'
 # SIP Regular Expressions Patterns
 reg_method_moveup = re.compile('|'.join(reserved['METHOD_MoveUp']))
 reg_method_inq = re.compile('|'.join(reserved['METHOD_INQ']))
+reg_student = re.compile('|'.join(reserved['STUDENT']))
+reg_print = re.compile('|'.join(reserved['PRINT']))
 
 
 # SIP Regular Expressions
@@ -43,6 +47,15 @@ def t_METHOD_MoveUp(t):
 
 @TOKEN(reg_method_inq.pattern)
 def t_METHOD_INQ(t):
+    return t
+
+
+@TOKEN(reg_student.pattern)
+def t_STUDENT(t):
+    return t
+
+@TOKEN(reg_print.pattern)
+def t_PRINT(t):
     return t
 
 
