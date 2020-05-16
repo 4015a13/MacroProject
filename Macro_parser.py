@@ -18,7 +18,7 @@ def p_statement(p):
                     | empty
                    '''
     p[0] = p[1]
-    # print('SIP Statement: {0}'.format(p[0]))
+
 
 def p_assignment(p):
     '''assignment : stu_assignment
