@@ -65,7 +65,7 @@ class Student:
             halfQualified.append(self)
             print("Student should receive the founds shortly")
             print('EVALUATE 002')
-        elif 3.0 > self.gpa() >= 2.8:
+        elif 3.0 > self.gpa() >= 2.75:
             quarterQualified.append(self)
             print("Student should receive the founds shortly")
             print('EVALUATE 003')
