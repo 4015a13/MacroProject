@@ -92,26 +92,26 @@ class Student:
 
 # Expel a student from the system
     def expel(self):
-        if self in Register:
+        if self in fullQualified:
             Register.remove(self)
-            print("Student expelled")
-            print('EXPEL 001')
-        elif self in fullQualified:
             fullQualified.remove(self)
             print("Student expelled")
-            print('EXPEL 002')
+            print('EXPEL 001')
         elif self in halfQualified:
+            Register.remove(self)
             halfQualified.remove(self)
             print("Student expelled")
-            print('EXPEL 003')
+            print('EXPEL 002')
         elif self in quarterQualified:
+            Register.remove(self)
             quarterQualified.remove(self)
             print("Student expelled")
-            print('EXPEL 004')
+            print('EXPEL 003')
         elif self in notQualified:
+            Register.remove(self)
             notQualified.remove(self)
             print("Student expelled")
-            print('EXPEL 005')
+            print('EXPEL 004')
         else:
             print("ERROR")
 
