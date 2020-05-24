@@ -15,13 +15,13 @@ class Student:
 
 # Generate grade
     def gengrade(self, grade):
-        if grade == "A":
+        if grade == "A" or grade == "a":
             return 4.0
-        if grade == "B":
+        if grade == "B" or grade == "b":
             return 3.2
-        if grade == "C":
+        if grade == "C" or grade == "c":
             return 2.5
-        if grade == "D":
+        if grade == "D" or grade == "d":
             return 2.0
         else:
             return 0.0
