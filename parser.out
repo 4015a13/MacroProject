@@ -2,6 +2,7 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
 Unused terminals:
 
+    FILE
     INT
     LP
     RP
@@ -17,26 +18,29 @@ Rule 4     assignment -> stu_assignment
 Rule 5     assignment -> method_assignment
 Rule 6     method -> method_moveup
 Rule 7     method -> method_print
-Rule 8     method_print -> ID DOT PRINT
-Rule 9     method_moveup -> ID DOT METHOD_MoveUp
-Rule 10    stu_assignment -> STUDENT EQUALS ID COMMA ID COMMA ID COMMA ID COMMA ID
-Rule 11    method_assignment -> ID DOT METHOD_INQ
-Rule 12    empty -> <empty>
+Rule 8     method -> method_file
+Rule 9     method_file -> ID
+Rule 10    method_print -> ID DOT PRINT
+Rule 11    method_moveup -> ID DOT METHOD_MoveUp
+Rule 12    stu_assignment -> STUDENT EQUALS ID COMMA ID COMMA ID COMMA ID COMMA ID
+Rule 13    method_assignment -> ID DOT METHOD_INQ
+Rule 14    empty -> <empty>
 
 Terminals, with rules where they appear
 
-COMMA                : 10 10 10 10
-DOT                  : 8 9 11
-EQUALS               : 10
-ID                   : 8 9 10 10 10 10 10 11
+COMMA                : 12 12 12 12
+DOT                  : 10 11 13
+EQUALS               : 12
+FILE                 : 
+ID                   : 9 10 11 12 12 12 12 12 13
 INT                  : 
 LP                   : 
-METHOD_INQ           : 11
-METHOD_MoveUp        : 9
-PRINT                : 8
+METHOD_INQ           : 13
+METHOD_MoveUp        : 11
+PRINT                : 10
 RP                   : 
 STRING               : 
-STUDENT              : 10
+STUDENT              : 12
 error                : 
 
 Nonterminals, with rules where they appear
@@ -45,6 +49,7 @@ assignment           : 2
 empty                : 3
 method               : 1
 method_assignment    : 5
+method_file          : 8
 method_moveup        : 6
 method_print         : 7
 statement            : 0
@@ -60,17 +65,19 @@ state 0
     (3) statement -> . empty
     (6) method -> . method_moveup
     (7) method -> . method_print
+    (8) method -> . method_file
     (4) assignment -> . stu_assignment
     (5) assignment -> . method_assignment
-    (12) empty -> .
-    (9) method_moveup -> . ID DOT METHOD_MoveUp
-    (8) method_print -> . ID DOT PRINT
-    (10) stu_assignment -> . STUDENT EQUALS ID COMMA ID COMMA ID COMMA ID COMMA ID
-    (11) method_assignment -> . ID DOT METHOD_INQ
+    (14) empty -> .
+    (11) method_moveup -> . ID DOT METHOD_MoveUp
+    (10) method_print -> . ID DOT PRINT
+    (9) method_file -> . ID
+    (12) stu_assignment -> . STUDENT EQUALS ID COMMA ID COMMA ID COMMA ID COMMA ID
+    (13) method_assignment -> . ID DOT METHOD_INQ
 
-    $end            reduce using rule 12 (empty -> .)
-    ID              shift and go to state 9
-    STUDENT         shift and go to state 10
+    $end            reduce using rule 14 (empty -> .)
+    ID              shift and go to state 10
+    STUDENT         shift and go to state 11
 
     statement                      shift and go to state 1
     method                         shift and go to state 2
@@ -78,8 +85,9 @@ state 0
     empty                          shift and go to state 4
     method_moveup                  shift and go to state 5
     method_print                   shift and go to state 6
-    stu_assignment                 shift and go to state 7
-    method_assignment              shift and go to state 8
+    method_file                    shift and go to state 7
+    stu_assignment                 shift and go to state 8
+    method_assignment              shift and go to state 9
 
 state 1
 
@@ -124,132 +132,141 @@ state 6
 
 state 7
 
+    (8) method -> method_file .
+
+    $end            reduce using rule 8 (method -> method_file .)
+
+
+state 8
+
     (4) assignment -> stu_assignment .
 
     $end            reduce using rule 4 (assignment -> stu_assignment .)
 
 
-state 8
+state 9
 
     (5) assignment -> method_assignment .
 
     $end            reduce using rule 5 (assignment -> method_assignment .)
 
 
-state 9
-
-    (9) method_moveup -> ID . DOT METHOD_MoveUp
-    (8) method_print -> ID . DOT PRINT
-    (11) method_assignment -> ID . DOT METHOD_INQ
-
-    DOT             shift and go to state 11
-
-
 state 10
 
-    (10) stu_assignment -> STUDENT . EQUALS ID COMMA ID COMMA ID COMMA ID COMMA ID
+    (11) method_moveup -> ID . DOT METHOD_MoveUp
+    (10) method_print -> ID . DOT PRINT
+    (9) method_file -> ID .
+    (13) method_assignment -> ID . DOT METHOD_INQ
 
-    EQUALS          shift and go to state 12
+    DOT             shift and go to state 12
+    $end            reduce using rule 9 (method_file -> ID .)
 
 
 state 11
 
-    (9) method_moveup -> ID DOT . METHOD_MoveUp
-    (8) method_print -> ID DOT . PRINT
-    (11) method_assignment -> ID DOT . METHOD_INQ
+    (12) stu_assignment -> STUDENT . EQUALS ID COMMA ID COMMA ID COMMA ID COMMA ID
 
-    METHOD_MoveUp   shift and go to state 13
-    PRINT           shift and go to state 14
-    METHOD_INQ      shift and go to state 15
+    EQUALS          shift and go to state 13
 
 
 state 12
 
-    (10) stu_assignment -> STUDENT EQUALS . ID COMMA ID COMMA ID COMMA ID COMMA ID
+    (11) method_moveup -> ID DOT . METHOD_MoveUp
+    (10) method_print -> ID DOT . PRINT
+    (13) method_assignment -> ID DOT . METHOD_INQ
 
-    ID              shift and go to state 16
+    METHOD_MoveUp   shift and go to state 14
+    PRINT           shift and go to state 15
+    METHOD_INQ      shift and go to state 16
 
 
 state 13
 
-    (9) method_moveup -> ID DOT METHOD_MoveUp .
+    (12) stu_assignment -> STUDENT EQUALS . ID COMMA ID COMMA ID COMMA ID COMMA ID
 
-    $end            reduce using rule 9 (method_moveup -> ID DOT METHOD_MoveUp .)
+    ID              shift and go to state 17
 
 
 state 14
 
-    (8) method_print -> ID DOT PRINT .
+    (11) method_moveup -> ID DOT METHOD_MoveUp .
 
-    $end            reduce using rule 8 (method_print -> ID DOT PRINT .)
+    $end            reduce using rule 11 (method_moveup -> ID DOT METHOD_MoveUp .)
 
 
 state 15
 
-    (11) method_assignment -> ID DOT METHOD_INQ .
+    (10) method_print -> ID DOT PRINT .
 
-    $end            reduce using rule 11 (method_assignment -> ID DOT METHOD_INQ .)
+    $end            reduce using rule 10 (method_print -> ID DOT PRINT .)
 
 
 state 16
 
-    (10) stu_assignment -> STUDENT EQUALS ID . COMMA ID COMMA ID COMMA ID COMMA ID
+    (13) method_assignment -> ID DOT METHOD_INQ .
 
-    COMMA           shift and go to state 17
+    $end            reduce using rule 13 (method_assignment -> ID DOT METHOD_INQ .)
 
 
 state 17
 
-    (10) stu_assignment -> STUDENT EQUALS ID COMMA . ID COMMA ID COMMA ID COMMA ID
+    (12) stu_assignment -> STUDENT EQUALS ID . COMMA ID COMMA ID COMMA ID COMMA ID
 
-    ID              shift and go to state 18
+    COMMA           shift and go to state 18
 
 
 state 18
 
-    (10) stu_assignment -> STUDENT EQUALS ID COMMA ID . COMMA ID COMMA ID COMMA ID
+    (12) stu_assignment -> STUDENT EQUALS ID COMMA . ID COMMA ID COMMA ID COMMA ID
 
-    COMMA           shift and go to state 19
+    ID              shift and go to state 19
 
 
 state 19
 
-    (10) stu_assignment -> STUDENT EQUALS ID COMMA ID COMMA . ID COMMA ID COMMA ID
+    (12) stu_assignment -> STUDENT EQUALS ID COMMA ID . COMMA ID COMMA ID COMMA ID
 
-    ID              shift and go to state 20
+    COMMA           shift and go to state 20
 
 
 state 20
 
-    (10) stu_assignment -> STUDENT EQUALS ID COMMA ID COMMA ID . COMMA ID COMMA ID
+    (12) stu_assignment -> STUDENT EQUALS ID COMMA ID COMMA . ID COMMA ID COMMA ID
 
-    COMMA           shift and go to state 21
+    ID              shift and go to state 21
 
 
 state 21
 
-    (10) stu_assignment -> STUDENT EQUALS ID COMMA ID COMMA ID COMMA . ID COMMA ID
+    (12) stu_assignment -> STUDENT EQUALS ID COMMA ID COMMA ID . COMMA ID COMMA ID
 
-    ID              shift and go to state 22
+    COMMA           shift and go to state 22
 
 
 state 22
 
-    (10) stu_assignment -> STUDENT EQUALS ID COMMA ID COMMA ID COMMA ID . COMMA ID
+    (12) stu_assignment -> STUDENT EQUALS ID COMMA ID COMMA ID COMMA . ID COMMA ID
 
-    COMMA           shift and go to state 23
+    ID              shift and go to state 23
 
 
 state 23
 
-    (10) stu_assignment -> STUDENT EQUALS ID COMMA ID COMMA ID COMMA ID COMMA . ID
+    (12) stu_assignment -> STUDENT EQUALS ID COMMA ID COMMA ID COMMA ID . COMMA ID
 
-    ID              shift and go to state 24
+    COMMA           shift and go to state 24
 
 
 state 24
 
-    (10) stu_assignment -> STUDENT EQUALS ID COMMA ID COMMA ID COMMA ID COMMA ID .
+    (12) stu_assignment -> STUDENT EQUALS ID COMMA ID COMMA ID COMMA ID COMMA . ID
 
-    $end            reduce using rule 10 (stu_assignment -> STUDENT EQUALS ID COMMA ID COMMA ID COMMA ID COMMA ID .)
+    ID              shift and go to state 25
+
+
+state 25
+
+    (12) stu_assignment -> STUDENT EQUALS ID COMMA ID COMMA ID COMMA ID COMMA ID .
+
+    $end            reduce using rule 12 (stu_assignment -> STUDENT EQUALS ID COMMA ID COMMA ID COMMA ID COMMA ID .)
 

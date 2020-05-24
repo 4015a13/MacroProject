@@ -112,6 +112,10 @@ class Student:
             notQualified.remove(self)
             print("Student expelled")
             print('EXPEL 004')
+        elif self in Register:
+            Register.remove(self)
+            print("Student expelled")
+            print('EXPEL 000')
         else:
             print("ERROR")
 

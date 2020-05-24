@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'COMMA DOT EQUALS ID INT LP METHOD_INQ METHOD_MoveUp PRINT RP STRING STUDENTstatement : method\n                    | assignment\n                    | empty\n                   assignment : stu_assignment\n                  | method_assignment\n                    method : method_moveup\n                | method_print\n                method_print : ID DOT PRINTmethod_moveup : ID DOT METHOD_MoveUp stu_assignment : STUDENT EQUALS ID COMMA ID COMMA ID COMMA ID COMMA IDmethod_assignment : ID DOT METHOD_INQempty :  '
+_lr_signature = 'COMMA DOT EQUALS FILE ID INT LP METHOD_INQ METHOD_MoveUp PRINT RP STRING STUDENTstatement : method\n                    | assignment\n                    | empty\n                   assignment : stu_assignment\n                  | method_assignment\n                    method : method_moveup\n                | method_print\n                | method_file\n                method_file : ID method_print : ID DOT PRINTmethod_moveup : ID DOT METHOD_MoveUp stu_assignment : STUDENT EQUALS ID COMMA ID COMMA ID COMMA ID COMMA IDmethod_assignment : ID DOT METHOD_INQempty :  '
     
-_lr_action_items = {'$end':([0,1,2,3,4,5,6,7,8,13,14,15,24,],[-12,0,-1,-2,-3,-6,-7,-4,-5,-9,-8,-11,-10,]),'ID':([0,12,17,19,21,23,],[9,16,18,20,22,24,]),'STUDENT':([0,],[10,]),'DOT':([9,],[11,]),'EQUALS':([10,],[12,]),'METHOD_MoveUp':([11,],[13,]),'PRINT':([11,],[14,]),'METHOD_INQ':([11,],[15,]),'COMMA':([16,18,20,22,],[17,19,21,23,]),}
+_lr_action_items = {'$end':([0,1,2,3,4,5,6,7,8,9,10,14,15,16,25,],[-14,0,-1,-2,-3,-6,-7,-8,-4,-5,-9,-11,-10,-13,-12,]),'ID':([0,13,18,20,22,24,],[10,17,19,21,23,25,]),'STUDENT':([0,],[11,]),'DOT':([10,],[12,]),'EQUALS':([11,],[13,]),'METHOD_MoveUp':([12,],[14,]),'PRINT':([12,],[15,]),'METHOD_INQ':([12,],[16,]),'COMMA':([17,19,21,23,],[18,20,22,24,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'statement':([0,],[1,]),'method':([0,],[2,]),'assignment':([0,],[3,]),'empty':([0,],[4,]),'method_moveup':([0,],[5,]),'method_print':([0,],[6,]),'stu_assignment':([0,],[7,]),'method_assignment':([0,],[8,]),}
+_lr_goto_items = {'statement':([0,],[1,]),'method':([0,],[2,]),'assignment':([0,],[3,]),'empty':([0,],[4,]),'method_moveup':([0,],[5,]),'method_print':([0,],[6,]),'method_file':([0,],[7,]),'stu_assignment':([0,],[8,]),'method_assignment':([0,],[9,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,16 +27,18 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> statement","S'",1,None,None,None),
-  ('statement -> method','statement',1,'p_statement','Macro_parser.py',16),
-  ('statement -> assignment','statement',1,'p_statement','Macro_parser.py',17),
-  ('statement -> empty','statement',1,'p_statement','Macro_parser.py',18),
-  ('assignment -> stu_assignment','assignment',1,'p_assignment','Macro_parser.py',24),
-  ('assignment -> method_assignment','assignment',1,'p_assignment','Macro_parser.py',25),
-  ('method -> method_moveup','method',1,'p_method','Macro_parser.py',31),
-  ('method -> method_print','method',1,'p_method','Macro_parser.py',32),
-  ('method_print -> ID DOT PRINT','method_print',3,'p_method_print','Macro_parser.py',39),
-  ('method_moveup -> ID DOT METHOD_MoveUp','method_moveup',3,'p_method_moveup','Macro_parser.py',47),
-  ('stu_assignment -> STUDENT EQUALS ID COMMA ID COMMA ID COMMA ID COMMA ID','stu_assignment',11,'p_stu_assignment','Macro_parser.py',65),
-  ('method_assignment -> ID DOT METHOD_INQ','method_assignment',3,'p_method_assignment','Macro_parser.py',78),
-  ('empty -> <empty>','empty',0,'p_empty','Macro_parser.py',95),
+  ('statement -> method','statement',1,'p_statement','Macro_parser.py',17),
+  ('statement -> assignment','statement',1,'p_statement','Macro_parser.py',18),
+  ('statement -> empty','statement',1,'p_statement','Macro_parser.py',19),
+  ('assignment -> stu_assignment','assignment',1,'p_assignment','Macro_parser.py',25),
+  ('assignment -> method_assignment','assignment',1,'p_assignment','Macro_parser.py',26),
+  ('method -> method_moveup','method',1,'p_method','Macro_parser.py',32),
+  ('method -> method_print','method',1,'p_method','Macro_parser.py',33),
+  ('method -> method_file','method',1,'p_method','Macro_parser.py',34),
+  ('method_file -> ID','method_file',1,'p_method_file','Macro_parser.py',40),
+  ('method_print -> ID DOT PRINT','method_print',3,'p_method_print','Macro_parser.py',46),
+  ('method_moveup -> ID DOT METHOD_MoveUp','method_moveup',3,'p_method_moveup','Macro_parser.py',66),
+  ('stu_assignment -> STUDENT EQUALS ID COMMA ID COMMA ID COMMA ID COMMA ID','stu_assignment',11,'p_stu_assignment','Macro_parser.py',83),
+  ('method_assignment -> ID DOT METHOD_INQ','method_assignment',3,'p_method_assignment','Macro_parser.py',93),
+  ('empty -> <empty>','empty',0,'p_empty','Macro_parser.py',113),
 ]
