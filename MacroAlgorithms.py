@@ -77,16 +77,12 @@ class Student:
 # Force student with a GPA of at least 2.5 into a financial aid receiver
     def force(self):
         if self in notQualified:
-            if self.gpa() > 2.5:
+            if self.gpa() > 0.0:
                 quarterQualified.append(self)
                 notQualified.remove(self)
                 print("Operation Successful (FORCE)")
                 print("Student should receive the founds shortly (FORCED)")
                 print('FORCE 001')
-            else:
-                print("Operation Unsuccessful (FORCE)")
-                print("Student will not receive the founds (FORCED)")
-                print('FORCE 002')
         else:
             print("ERROR")
 
@@ -112,10 +108,6 @@ class Student:
             notQualified.remove(self)
             print("Student expelled")
             print('EXPEL 004')
-        elif self in Register:
-            Register.remove(self)
-            print("Student expelled")
-            print('EXPEL 000')
         else:
             print("ERROR")
 

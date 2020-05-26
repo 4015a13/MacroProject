@@ -14,7 +14,6 @@ reserved = {
     'METHOD_INQ': ['status', 'expel', 'gpa'],
     'STUDENT': ['student'],
     'PRINT': ['print'],
-    'FILE': ['file'],
 }
 
 # tokens
@@ -38,7 +37,6 @@ reg_method_moveup = re.compile('|'.join(reserved['METHOD_MoveUp']))
 reg_method_inq = re.compile('|'.join(reserved['METHOD_INQ']))
 reg_student = re.compile('|'.join(reserved['STUDENT']))
 reg_print = re.compile('|'.join(reserved['PRINT']))
-reg_file = re.compile('|'.join(reserved['FILE']))
 
 
 # SIP Regular Expressions
@@ -58,10 +56,6 @@ def t_STUDENT(t):
 
 @TOKEN(reg_print.pattern)
 def t_PRINT(t):
-    return t
-
-@TOKEN(reg_file.pattern)
-def t_FILE(t):
     return t
 
 

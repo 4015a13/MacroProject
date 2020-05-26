@@ -1,8 +1,6 @@
 import ply.yacc as yacc
 import Macrolex as macrolex
 from MacroAlgorithms import *
-import subprocess
-
 
 tokens = macrolex.tokens
 
@@ -26,21 +24,15 @@ def p_assignment(p):
                   | method_assignment
                     '''
     p[0] = p[1]
-
+    # print('Assignment: {0}'.format(p[0]))
 
 def p_method(p):
     '''method : method_moveup
                 | method_print
-                | method_file
                 '''
 
     p[0] = p[1]
-
-def p_method_file(p):
-    '''method_file : ID '''
-    p[0] = (str(p[1]))
-    if str(p[1]) == 'File':
-        subprocess.Popen(["notepad", "editor.txt"])
+    # print('Method: {0}'.format(p[0]))
 
 def p_method_print(p):
     '''method_print : ID DOT PRINT'''
