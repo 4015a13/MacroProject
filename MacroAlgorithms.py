@@ -85,6 +85,7 @@ class Student:
                 print('FORCE 001')
         else:
             print("ERROR")
+            print('FORCE 002')
 
 # Expel a student from the system
     def expel(self):
