@@ -10,3 +10,9 @@ fails short to still consider his case if he satisfies other requirements. We un
 of work often take days, sometime even week, but this is where our language comes in. 
 We will be using PLY to implement our language, the python parser and scanner tool that will allow 
 us to make the language as easy straight forward as possible.
+
+To learn how to install the language watch this tutorial: 
+https://youtu.be/zgGDkGtqPII
+
+Demonstration video:
+https://youtu.be/TsvD_Dc2wdc
